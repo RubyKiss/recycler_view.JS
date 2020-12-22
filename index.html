@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .item{
+            height:50px;
+        }
+        .cont{
+            position: fixed;
+            left: 0;
+            top: 0;
+            width:100vw;
+            height: 100vh;
+            overflow-y: scroll;
+        }
+    </style>
+</head>
+<body>
+    <div class="cont">
+        <div id="app"></div>
+    </div>
+
+    <div class="xx" style="display: none;">
+        <div class="item">
+            <img width="30px" src="" alt="aaaa"/>
+            <div class="v"></div>
+        </div>
+    </div>
+
+    <script src="recycler_view.js"></script>
+    <script>
+        (function(){
+            var data = []
+            for(var i=0;i<10000;i++){
+                data.push(i+" - QAQ")
+            }
+            var x = new recycler_view(document.querySelector("#app"),document.querySelector(".item"),
+            function(node,firstload,index,list){
+                //处理数据显示，事件处理需要注意使用addevent会叠加事件，需要将事件也复用
+                //可以利用firstload 第一次加载进行添加事件
+                //不建议直接用 .innerHTML 改变内容
+                node.querySelector(".v").innerText=list[index]
+            },data,50,20)
+            x.update(1);
+
+            //上层滚动事件
+            document.querySelector(".cont").addEventListener('scroll',function(ev){
+                console.log()
+                var x1 = Math.ceil(ev.target.scrollTop / x.pageHeight());
+                //更新数据到第几页的位置
+                x.update(x1)
+            })
+        })()
+    </script>
+</body>
+</html>
