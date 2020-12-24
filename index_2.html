@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+        .cont{
+            position: fixed;
+            left: 0;
+            top: 0;
+            width:100vw;
+            height: 100vh;
+            overflow-y: scroll;
+        }
+        /* .item:nth-child(odd){
+            background-color: gray;
+        } */
+    </style>
+</head>
+<body>
+    <div class="cont">
+        <div id="app">
+           
+        </div>
+    </div>
+
+    <div class="xx" style="height:0;overflow: hidden;">
+        <div class="item">
+            <div class="v"></div>
+        </div>
+    </div>
+
+    <script src="recycler_view_2.js?v=3"></script>
+    <script>
+        (function(){
+
+            var cont =document.querySelector(".cont")
+
+            var data = []
+            for(var i=0;i<1000;i++){
+                var r = Math.floor(Math.random()*10)
+                var q=""
+                for(var j=0;j<r;j++){
+                    var l = ""
+                    for(var k=0;k<r;k++){
+                        l+=('ABCDEFGHIJK')[k]
+                    }
+                    q+=l+"<br/>"
+                }
+                if(i==999){
+                    data.push({"xxx":"<button id='aaa'>click me</button>"})
+                }else{
+                    if(i%2){
+                        data.push({"xxx":"<div style='background-color:red'>"+i+". "+q+"</div>"})
+                    }else{
+                        data.push({"xxx":"<div >"+i+". "+q+"</div>"})
+                    }
+
+                }
+                // data.push( i+" - QAQ")
+            }
+            var x = new recycler_view(cont,document.querySelector("#app"),document.querySelector(".item"),20,data,function(data,node){
+                node.querySelector(".v").innerHTML=data.xxx
+            })
+            window.instance = x
+            
+        })()
+
+    </script>
+</body>
+</html>
