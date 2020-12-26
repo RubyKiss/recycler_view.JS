@@ -33,7 +33,7 @@ window.recycler_view = function(scrollcontainer,container,template,node_len,list
 
     function scroll_func(ev){
         var that_scrollTop = this.scrollTop
-        var that_ContainerHeight = this.offsetHeight
+        // var that_ContainerHeight = this.offsetHeight
         this.instance._last_scrolltop = that_scrollTop
         var index = 0
         var j=0
@@ -43,7 +43,7 @@ window.recycler_view = function(scrollcontainer,container,template,node_len,list
         var forindex = this._touchIndex - this.instance.node_len >0 ? this._touchIndex - this.instance.node_len : 0
         for(var i=forindex;i<this.instance.top_list.length;i++){
             var bottom = this.instance.top_list[i]+this.instance.height_list[i]
-            var top = this.instance.top_list[i]
+            // var top = this.instance.top_list[i]
             if(((bottom - that_scrollTop >=0 )) && index < this.instance.node_list.length){
                 if(toppadding==-1){
                     toppadding = this.instance.top_list[i]
