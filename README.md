@@ -3,3 +3,9 @@
 
 预览:
 https://rubykiss.github.io/recycler_view.JS/index.html
+
+
+
+v2版：
+支持item自动高度
+https://rubykiss.github.io/recycler_view.JS/index_2.html
